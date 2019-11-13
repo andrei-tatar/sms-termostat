@@ -7,8 +7,8 @@
 Sensor sensor(false);
 Tcn75a temp;
 
-#define SLEEP_TIME_SEC (60 * 5)
-#define MAX_TIME_MS (6UL * SLEEP_TIME_SEC * 1000)
+#define SLEEP_TIME_SEC (60 * 10UL)
+#define MAX_TIME_MS (3UL * SLEEP_TIME_SEC * 1000)
 
 void setup()
 {
@@ -47,4 +47,5 @@ void loop()
     }
 
     sensor.sleep(SLEEP_TIME_SEC);
+    lastSend -= SLEEP_TIME_SEC * 1000; //compensate sleep time
 }
