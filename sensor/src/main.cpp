@@ -31,10 +31,11 @@ void loop()
         lastTemperature = temperature;
         lastSend = now;
 
-        uint8_t msg[3];
+        uint8_t msg[4];
         msg[0] = 't';
         msg[1] = temperature;
         msg[2] = temperature >> 8;
+        msg[3] = sensor.readVoltage() / 10 - 100;
 
         sensor.powerUp();
         if (sensor.sendAndWait(msg, sizeof(msg)))
